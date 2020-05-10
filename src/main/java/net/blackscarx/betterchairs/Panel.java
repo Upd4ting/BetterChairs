@@ -9,10 +9,14 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * This class is run when the .jar is executed directly by the user and displays a message
+ */
 public class Panel {
     public static void main(String[] args) {
         String version = "UNKNOWN", web = null;
 
+        // Parse plugin.yml and extract some information
         try (BufferedReader reader = new BufferedReader(
                 new InputStreamReader(Panel.class.getResourceAsStream("/plugin.yml"), StandardCharsets.UTF_8))) {
             String line;
@@ -27,6 +31,7 @@ public class Panel {
             ex.printStackTrace();
         }
 
+        // Prepare message to show
         StringBuilder sb = new StringBuilder("This is a Minecraft Spigot Plugin (SpigotMC.org).\n")
                 .append("Just place it inside your server's plugin folder.\n\n")
                 .append("Version: ")
@@ -48,6 +53,7 @@ public class Panel {
             JOptionPane.showMessageDialog(frame, sb.toString(), "BetterChairs v" + version, JOptionPane.INFORMATION_MESSAGE);
             frame.dispose();
         } else {
+            // Fallback to console when running headless
             System.out.println(sb.toString());
         }
     }
