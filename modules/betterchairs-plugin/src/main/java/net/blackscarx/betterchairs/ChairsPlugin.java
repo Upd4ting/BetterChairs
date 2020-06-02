@@ -193,13 +193,10 @@ public class ChairsPlugin extends JavaPlugin implements Listener {
             return;
         //Get the clicked block
         Block b = e.getClickedBlock();
-        //Check if the block is a Stairs
-        if (!(b.getState().getData() instanceof Stairs))
-            return;
         //Check if the stairs face down
         if (b.getState().getData().toItemStack().getDurability() > 3)
             return;
-        //Check if the stairs if the stairs is valide
+        //Check if the stairs if the stairs is valid
         if (StairsBlock.from(b.getType()) == null)
             return;
         //Check if the stairs is enable
